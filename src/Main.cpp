@@ -3,13 +3,14 @@
 #include <vector>
 #include "classes/Transition.h"
 #include "classes/Problem.h"
+#include "control/Solver.h"
 
 using namespace std;
 
 int main() {
 
-    ifstream file("input.txt");
-    if(file.is_open())
+    ifstream file("../Benchmark/instance_100_2_1.air");
+    if(file.good())
     {
         vector<Transition> transitions;
         int origen, destination, hI, hF;
@@ -22,8 +23,9 @@ int main() {
         }
 
         Problem problem(transitions);
-
+        Solver solver(problem);
     }
+    else cout << "BAD" << endl;
 
 
 }

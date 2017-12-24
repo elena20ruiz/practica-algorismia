@@ -11,3 +11,7 @@ void Solver::solveVersion2() {
 
 }
 
+void Solver::printResult() {
+
+}
+

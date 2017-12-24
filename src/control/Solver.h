@@ -12,8 +12,14 @@ private:
 public:
     explicit Solver(const Problem &problem);
 
+    //TODO: Primer algoritmo pedido
     void solveVersion1();
+
+    //TODO: Segundo algoritmo pedido
     void solveVersion2();
+
+    //TODO: Escribir los resultados en los archivos
+    void printResult();
 
 
 };
