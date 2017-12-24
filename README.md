@@ -10,5 +10,7 @@
 ## Ejecutar el programa
 
 > cd practica-algorismia
+
 > cd cmake-build-debug
+
 > make
