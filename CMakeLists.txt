@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.9)
-project(practica_algorismia)
+project(practica)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(practica_algorismia src/classes/Transition.cpp src/classes/Transition.h src/Main.cpp src/classes/Problem.cpp src/classes/Problem.h src/classes/Pilot.cpp src/classes/Pilot.h src/control/Solver.cpp src/control/Solver.h)
+add_executable(practica main.cpp src/classes/Node.cpp src/classes/Node.h src/classes/Edge.cpp src/classes/Edge.h src/classes/Network.cpp src/classes/Network.h src/classes/Edge.cpp src/classes/Edge.h src/problem/Solver.cpp src/problem/Solver.h src/algorithm/EKAlgorithm.cpp src/algorithm/EKAlgoritm.cpp src/algorithm/EKAlgoritm.h)

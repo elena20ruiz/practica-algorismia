@@ -231,6 +231,60 @@ src/classes/Transition.cpp.s:
 	$(MAKE) -f CMakeFiles/practica_algorismia.dir/build.make CMakeFiles/practica_algorismia.dir/src/classes/Transition.cpp.s
 .PHONY : src/classes/Transition.cpp.s
 
+src/control/AlgorithmVersion1.o: src/control/AlgorithmVersion1.cpp.o
+
+.PHONY : src/control/AlgorithmVersion1.o
+
+# target to build an object file
+src/control/AlgorithmVersion1.cpp.o:
+	$(MAKE) -f CMakeFiles/practica_algorismia.dir/build.make CMakeFiles/practica_algorismia.dir/src/control/AlgorithmVersion1.cpp.o
+.PHONY : src/control/AlgorithmVersion1.cpp.o
+
+src/control/AlgorithmVersion1.i: src/control/AlgorithmVersion1.cpp.i
+
+.PHONY : src/control/AlgorithmVersion1.i
+
+# target to preprocess a source file
+src/control/AlgorithmVersion1.cpp.i:
+	$(MAKE) -f CMakeFiles/practica_algorismia.dir/build.make CMakeFiles/practica_algorismia.dir/src/control/AlgorithmVersion1.cpp.i
+.PHONY : src/control/AlgorithmVersion1.cpp.i
+
+src/control/AlgorithmVersion1.s: src/control/AlgorithmVersion1.cpp.s
+
+.PHONY : src/control/AlgorithmVersion1.s
+
+# target to generate assembly for a file
+src/control/AlgorithmVersion1.cpp.s:
+	$(MAKE) -f CMakeFiles/practica_algorismia.dir/build.make CMakeFiles/practica_algorismia.dir/src/control/AlgorithmVersion1.cpp.s
+.PHONY : src/control/AlgorithmVersion1.cpp.s
+
+src/control/AlgorithmVersion2.o: src/control/AlgorithmVersion2.cpp.o
+
+.PHONY : src/control/AlgorithmVersion2.o
+
+# target to build an object file
+src/control/AlgorithmVersion2.cpp.o:
+	$(MAKE) -f CMakeFiles/practica_algorismia.dir/build.make CMakeFiles/practica_algorismia.dir/src/control/AlgorithmVersion2.cpp.o
+.PHONY : src/control/AlgorithmVersion2.cpp.o
+
+src/control/AlgorithmVersion2.i: src/control/AlgorithmVersion2.cpp.i
+
+.PHONY : src/control/AlgorithmVersion2.i
+
+# target to preprocess a source file
+src/control/AlgorithmVersion2.cpp.i:
+	$(MAKE) -f CMakeFiles/practica_algorismia.dir/build.make CMakeFiles/practica_algorismia.dir/src/control/AlgorithmVersion2.cpp.i
+.PHONY : src/control/AlgorithmVersion2.cpp.i
+
+src/control/AlgorithmVersion2.s: src/control/AlgorithmVersion2.cpp.s
+
+.PHONY : src/control/AlgorithmVersion2.s
+
+# target to generate assembly for a file
+src/control/AlgorithmVersion2.cpp.s:
+	$(MAKE) -f CMakeFiles/practica_algorismia.dir/build.make CMakeFiles/practica_algorismia.dir/src/control/AlgorithmVersion2.cpp.s
+.PHONY : src/control/AlgorithmVersion2.cpp.s
+
 src/control/Solver.o: src/control/Solver.cpp.o
 
 .PHONY : src/control/Solver.o
@@ -279,6 +333,12 @@ help:
 	@echo "... src/classes/Transition.o"
 	@echo "... src/classes/Transition.i"
 	@echo "... src/classes/Transition.s"
+	@echo "... src/control/AlgorithmVersion1.o"
+	@echo "... src/control/AlgorithmVersion1.i"
+	@echo "... src/control/AlgorithmVersion1.s"
+	@echo "... src/control/AlgorithmVersion2.o"
+	@echo "... src/control/AlgorithmVersion2.i"
+	@echo "... src/control/AlgorithmVersion2.s"
 	@echo "... src/control/Solver.o"
 	@echo "... src/control/Solver.i"
 	@echo "... src/control/Solver.s"

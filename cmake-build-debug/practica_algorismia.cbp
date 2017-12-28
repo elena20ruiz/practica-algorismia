@@ -109,6 +109,18 @@
 		<Unit filename="/home/elenaruiz/CLionProjects/practica-algorismia/src/classes/Transition.h">
 			<Option target="practica_algorismia"/>
 		</Unit>
+		<Unit filename="/home/elenaruiz/CLionProjects/practica-algorismia/src/control/AlgorithmVersion1.cpp">
+			<Option target="practica_algorismia"/>
+		</Unit>
+		<Unit filename="/home/elenaruiz/CLionProjects/practica-algorismia/src/control/AlgorithmVersion1.h">
+			<Option target="practica_algorismia"/>
+		</Unit>
+		<Unit filename="/home/elenaruiz/CLionProjects/practica-algorismia/src/control/AlgorithmVersion2.cpp">
+			<Option target="practica_algorismia"/>
+		</Unit>
+		<Unit filename="/home/elenaruiz/CLionProjects/practica-algorismia/src/control/AlgorithmVersion2.h">
+			<Option target="practica_algorismia"/>
+		</Unit>
 		<Unit filename="/home/elenaruiz/CLionProjects/practica-algorismia/src/control/Solver.cpp">
 			<Option target="practica_algorismia"/>
 		</Unit>
