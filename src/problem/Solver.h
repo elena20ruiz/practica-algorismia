@@ -9,10 +9,10 @@
 class Solver {
 
     private:
-        Network network = Network(std::vector<Node>(), std::vector<Edge>());
+        Network network = Network();
 
     public:
-        Solver(const std::vector<int> &nodes,  const std::vector<Edge> &edges);
+        Solver(const vector<vector<int> >  &flights, const vector<int> &cities);
 
         //TODO: Primer algoritmo pedido
         void solveVersion1();

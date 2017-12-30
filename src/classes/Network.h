@@ -3,6 +3,8 @@
 #define PRACTICA_NETWORK_H
 
 #include <vector>
+#include <map>
+
 #include "Node.h"
 #include "Edge.h"
 
@@ -11,13 +13,31 @@ using namespace std;
 class Network {
 
 private:
-    std::vector<Node> nodes;
-    std::vector<Edge> edges;
-    std::vector< std::vector<int> > adjMatrix;
-    std::vector< std::vector<int> > capMatrix;
-    std::vector< std::vector<int> > flowMatrix;
+    vector<Node> nodes;
+    map<int,int> idNodes;
+
+    vector<Edge> edges;
+    map<int,Edge> idEdges;
+
+    vector< map<int,int> > indMatrix;
+
+
+    vector< vector<bool> > adjMatrix;
+    vector< vector<int> > capMatrix;
+    vector< vector<int> > flowMatrix;
 public:
-    Network(std::vector<Node> edges, const std::vector<Edge> &vector);
+
+    Network();
+    Network(const vector<vector<int> >  &flights, const vector<int> &cities);
+
+    int existAdjacency(int i,int j);
+    int getCapacity(int i, int j);
+    int getFlow(int i, int j);
+    void setFlow(int i, int j, int f);
+    void setCapacity(int i, int j, int f);
+
+
+
 };
 
 #endif //PRACTICA_NETWORK_H

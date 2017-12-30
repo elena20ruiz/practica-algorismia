@@ -1,5 +1,6 @@
 #include "Edge.h"
 
+Edge::Edge() = default;
 
 Edge::Edge(int origin, int destination, int hI, int hF) {
     this->origin = origin;
@@ -39,3 +40,6 @@ int Edge::getHF() const {
 void Edge::setHF(int hF) {
     this->hF = hF;
 }
+
+
+

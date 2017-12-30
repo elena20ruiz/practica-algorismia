@@ -12,6 +12,9 @@ private:
     int hF;
 
 public:
+
+    Edge();
+
     Edge(int origin, int destination, int hI, int hF);
 
     int getOrigin() const;
@@ -29,6 +32,7 @@ public:
     int getHF() const;
 
     void setHF(int hF);
+
 };
 
 #endif //PRACTICA_TRANSITIONS_H

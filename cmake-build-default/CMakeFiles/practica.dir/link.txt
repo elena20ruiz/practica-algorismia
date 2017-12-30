@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/practica.dir/src/algorithm/EKAlgoritm.cpp.o CMakeFiles/practica.dir/src/classes/Edge.cpp.o CMakeFiles/practica.dir/src/classes/Node.cpp.o CMakeFiles/practica.dir/src/classes/Network.cpp.o CMakeFiles/practica.dir/src/problem/Solver.cpp.o CMakeFiles/practica.dir/src/main.cpp.o  -o practica 
