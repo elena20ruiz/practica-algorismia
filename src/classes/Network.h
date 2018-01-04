@@ -5,39 +5,43 @@
 #include <vector>
 #include <map>
 
-#include "Node.h"
-#include "Edge.h"
 
 using namespace std;
 
 class Network {
 
 private:
-    vector<Node> nodes;
-    map<int,int> idNodes;
+    std::vector<int> nodes;
 
-    vector<Edge> edges;
-    map<int,Edge> idEdges;
+    std::vector< std::vector<bool> > adjMatrix;
+    std::vector< std::map<int,int> > capMatrix;
+    std::vector< std::map<int,int> > flowMatrix;
 
-    vector< map<int,int> > indMatrix;
+    int idSource;
+    int idSink;
 
-
-    vector< vector<bool> > adjMatrix;
-    vector< vector<int> > capMatrix;
-    vector< vector<int> > flowMatrix;
 public:
-
     Network();
-    Network(const vector<vector<int> >  &flights, const vector<int> &cities);
 
-    int existAdjacency(int i,int j);
-    int getCapacity(int i, int j);
-    int getFlow(int i, int j);
-    void setFlow(int i, int j, int f);
-    void setCapacity(int i, int j, int f);
+    void addNodes(const std::vector<int> &nodes);
+    void addEdge(int i, int j, int c);
+
+    void setIdSource(int s);
+    void setIdSink(int s);
+
+    int getIdSource();
+    int getIdSink();
+
+    int getNodes();
 
 
+    bool isConnected(int i, int j);
+    int getCapValue(int i, int j);
+    int getFlowValue(int i, int j);
 
+    void setCapValue(int i, int j, int v);
+    void setFlowValue(int i, int j, int v);
+    void updateFlowValue(int i, int j, int v);
 };
 
 #endif //PRACTICA_NETWORK_H

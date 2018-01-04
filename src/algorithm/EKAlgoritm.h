@@ -3,7 +3,6 @@
 #define PRACTICA_EKALGORITM_H
 
 #include <vector>
-#include "../classes/Edge.h"
 #include "../classes/Network.h"
 
 using namespace std;
@@ -13,7 +12,9 @@ public:
 
     EKAlgoritm();
 
-    std::vector<Edge> solve(Network &network);
+    std::vector< int> solve(Network n);
+
+    bool correctRequisites();
 };
 
 #endif //PRACTICA_EKALGORITM_H

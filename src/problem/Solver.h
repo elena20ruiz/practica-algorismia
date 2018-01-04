@@ -4,15 +4,19 @@
 
 
 #include "../classes/Network.h"
-#include "../classes/Edge.h"
+#include "../classes/Flight.h"
 
 class Solver {
 
     private:
         Network network = Network();
+        std::vector<Flight> flights;
 
     public:
-        Solver(const vector<vector<int> >  &flights, const vector<int> &cities);
+        Solver(const std::vector<Flight> &flights);
+
+
+        void generateNetwork();
 
         //TODO: Primer algoritmo pedido
         void solveVersion1();
@@ -23,6 +27,10 @@ class Solver {
         //TODO: Escribir los resultados en los archivos
         void printResult();
 
+
+    int generatedNodes();
+
+    bool canConnect(int i, int j);
 };
 
 
