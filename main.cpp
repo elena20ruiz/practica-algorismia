@@ -4,10 +4,6 @@
 #include "src/problem/Solver.h"
 #include "src/classes/Flight.h"
 
-void noDuplicated(vector<int> vector);
-
-void uniqueNodes(vector<int> vector);
-
 using namespace std;
 
 int main() {
@@ -23,12 +19,10 @@ int main() {
 
             origen = std::stoi(o);
 
-
             Flight transition(origen,destination,hI,hF);
             //flights.push_back(transition);
 
         }
-
 
 
         Flight transition(0,1,0,3);

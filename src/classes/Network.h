@@ -42,6 +42,7 @@ public:
     void setCapValue(int i, int j, int v);
     void setFlowValue(int i, int j, int v);
     void updateFlowValue(int i, int j, int v);
+
 };
 
 #endif //PRACTICA_NETWORK_H

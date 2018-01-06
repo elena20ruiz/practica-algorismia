@@ -1,68 +1,72 @@
-
-
 #include <limits>
-#include <queue>
 #include "EKAlgoritm.h"
 
 EKAlgoritm::EKAlgoritm() = default;
 
-vector<int> EKAlgoritm::solve(Network n) {
 
-    int size = n.getNodes();
-    int source = n.getIdSource();
-    int sink = n.getIdSink();
+int EKAlgoritm::EK(Network &network){
+
+    int n = network.getNodes();
+    int s = 0;
+    int t = n-1;
+
+    int maxFlow = 0;
+    int flow = 0;
+    int aux;
+
     while(true) {
-        vector<int> path(size,-1);
-        vector<int> capPath(size,numeric_limits<int>::infinity());
-        path[source] = source;
-        capPath[source] = numeric_limits<int>::infinity();
+        pair<int,int> pair_aux(-1,0);
+        vector<pair<int,int> > P(n,pair_aux);
+        P[s].first = -2;
+        P[s].second = numeric_limits<int>::infinity();
 
-        std::queue<int> q;
-        q.push(source);
+        queue<int> Q;
+        Q.push(s);
+        flow = BFS(network,P,Q);
 
-        while (!q.empty()) {
-            int u = q.front();
-            q.pop();
+        if(flow == 0) break;
+        maxFlow += flow;
 
-            for(int i = 0; i < size; ++i) {
-                if(n.isConnected(i,u)) {
-                    // There is available capacity,
-                    // and v is not seen before in search
+        int v = t;
+        int u;
+        while( aux != s) {
+            u = P[v].first;
+            network.updateFlowValue(u,v,flow);
+            network.updateFlowValue(v,u,-flow);
+            v = u;
+        }
 
-                    int dif = n.getCapValue(u,i) - n.getFlowValue(u,i);
 
-                    bool check = dif > 0 && path[i] == -1;
-                    if(check && correctRequisites()) {
-                        path[i] = u;
-                        capPath[i] = min(capPath[u], dif);
-                        if(i != sink) {
-                            q.push(i);
-                        }
-                        else { //Backtrack
-                            while (path[i] != i) {
-                                u = path[i];
-                                n.updateFlowValue(u,i,capPath[sink]);
-                                n.updateFlowValue(i,u,-capPath[sink]);
-                                i = u;
-                            }
-                            break;
-                        }
-                    }
+    }
+    return maxFlow;
+}
+
+
+int EKAlgoritm::BFS(Network &network, vector<pair<int, int>> &P, std::queue<int> &Q) {
+    int u;
+    int t = network.getNodes()-1;
+    while(!Q.empty()){
+        u = Q.front();
+        Q.pop();
+
+        for(int i = 0; i < network.getNodes();++i) {
+            if(network.isConnected(u,i)) {
+                int cap = network.getCapValue(u,i);
+                int flow = network.getFlowValue(i,u);
+                if(cap - flow > 0 and P[i].first == -1) {
+                    P[i].first = u;
+
+                    P[i].second = P[u].second; // The minimum
+                    if((cap-flow) < P[u].second) P[i].second = (cap-flow);
+
+                    if(i != t) Q.push(i);
+                    else return P[t].second;
                 }
             }
-        }
-        if (path[sink] == -1) { // We did not find a path to t
-            return path;
         }
 
     }
 
-
-}
-
-
-//TODO
-bool EKAlgoritm::correctRequisites() {
-    return true;
+    return 0;
 }
 

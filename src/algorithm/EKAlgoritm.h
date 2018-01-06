@@ -3,6 +3,7 @@
 #define PRACTICA_EKALGORITM_H
 
 #include <vector>
+#include <queue>
 #include "../classes/Network.h"
 
 using namespace std;
@@ -12,9 +13,11 @@ public:
 
     EKAlgoritm();
 
-    std::vector< int> solve(Network n);
-
     bool correctRequisites();
+
+    int EK(Network &network);
+
+    int BFS(Network &network, vector<pair<int, int>> &P, std::queue<int> &Q);
 };
 
 #endif //PRACTICA_EKALGORITM_H

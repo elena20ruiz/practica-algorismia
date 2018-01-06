@@ -62,3 +62,4 @@ void Network::setCapValue(int i, int j, int v){
 void Network::updateFlowValue(int i, int j, int v) {
     this->flowMatrix[i][j] += v;
 }
+

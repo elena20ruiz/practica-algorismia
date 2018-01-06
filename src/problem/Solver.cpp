@@ -6,14 +6,11 @@
 
 Solver::Solver(const std::vector<Flight> &flights) {
     this->flights = flights;
+    this->network = Network();
+
     generateNetwork();
 }
 
-void Solver::solveVersion1() {
-    EKAlgoritm algorithm;
-
-    vector<int> result = algorithm.solve( this->network);
-}
 
 /**
  * Pre: Flights is before introduced.
@@ -62,12 +59,17 @@ void Solver::generateNetwork() {
 }
 
 bool Solver::canConnect(int i, int j) {
-    int endHour = flights[i].getHF();
-    int iniHour = flights[j].getHI();
-    if( endHour + 0.25 <= iniHour and flights[i].getDestination() == flights[j].getOrigin()) return true;
+
+    bool samePlace = (flights[i].getDestination() == flights[j].getOrigin());
+    bool goodTime = (flights[i].getHF()+0.15 <= flights[j].getHI());
+
+    if(samePlace and goodTime) return true;
     return false;
 }
 
-int Solver::generatedNodes() {
-    return this->network.getNodes();
+
+void Solver::solveVersion1() {
+    EKAlgoritm algorithm;
+
+    int max = algorithm.EK(this->network);
 }

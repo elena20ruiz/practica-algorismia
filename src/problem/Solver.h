@@ -9,28 +9,19 @@
 class Solver {
 
     private:
-        Network network = Network();
+        Network network;
         std::vector<Flight> flights;
+
+        void generateNetwork();
+        bool canConnect(int i, int j);
 
     public:
         Solver(const std::vector<Flight> &flights);
 
-
-        void generateNetwork();
-
-        //TODO: Primer algoritmo pedido
         void solveVersion1();
-
-        //TODO: Segundo algoritmo pedido
         void solveVersion2();
 
-        //TODO: Escribir los resultados en los archivos
         void printResult();
-
-
-    int generatedNodes();
-
-    bool canConnect(int i, int j);
 };
 
 
