@@ -9,6 +9,7 @@ void Network::addEdge(int i, int j, int c) {
 
     this->adjMatrix[i][j] = true;
     this->capMatrix[i][j] = c;
+    this->flowMatrix[i][j] = 0;
 
 }
 

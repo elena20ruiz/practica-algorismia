@@ -12,13 +12,12 @@ int EKAlgoritm::EK(Network &network){
 
     int maxFlow = 0;
     int flow = 0;
-    int aux;
-
+    
     while(true) {
         pair<int,int> pair_aux(-1,0);
         vector<pair<int,int> > P(n,pair_aux);
         P[s].first = -2;
-        P[s].second = numeric_limits<int>::infinity();
+        P[s].second = 99999999;
 
         queue<int> Q;
         Q.push(s);
@@ -29,7 +28,7 @@ int EKAlgoritm::EK(Network &network){
 
         int v = t;
         int u;
-        while( aux != s) {
+        while( v != s) {
             u = P[v].first;
             network.updateFlowValue(u,v,flow);
             network.updateFlowValue(v,u,-flow);
