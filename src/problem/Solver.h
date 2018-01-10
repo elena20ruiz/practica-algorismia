@@ -12,16 +12,19 @@ class Solver {
         Network network;
         std::vector<Flight> flights;
 
-        void generateNetwork();
+        void generateNetwork(int version);
+        void generateEdgesV1(int n, int size);
+        void generateEdgesV2(int n, int size);
         bool canConnect(int i, int j);
 
+
     public:
-        Solver(const std::vector<Flight> &flights);
+        Solver(const std::vector<Flight> &flights, int version);
 
-        void solveVersion1();
-        void solveVersion2();
+        void runAlgorithm();
+        void generateResult();
 
-        void printResult();
+    void interpretateOutput();
 };
 
 

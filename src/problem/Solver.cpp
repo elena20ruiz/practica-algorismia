@@ -1,21 +1,53 @@
-
-
 #include <map>
 #include "Solver.h"
 #include "../algorithm/EKAlgoritm.h"
 
-Solver::Solver(const std::vector<Flight> &flights) {
-    this->flights = flights;
-    this->network = Network();
-
-    generateNetwork();
-}
-
 
 /**
- * Pre: Flights is before introduced.
+ * PUBLIC FUNCTIONS
  */
-void Solver::generateNetwork() {
+
+Solver::Solver(const std::vector<Flight> &flights, int version) {
+
+    this->flights = flights;
+    this->network = Network();
+    generateNetwork(version);
+}
+
+void Solver::runAlgorithm() {
+    EKAlgoritm algorithm;
+    int max = algorithm.EK(this->network);
+}
+
+void Solver::generateResult() {
+
+    int nFlights = this->flights.size();
+    int n = this->network.getNodes();
+    vector<bool> nodes_used(nFlights,false);
+
+    vector< vector<int> > pilotTravels;
+
+    bool allAssigned = false;
+    for(int i = 0; i < nFlights; ++i) {
+
+
+        while(!allAssigned) {
+
+
+
+
+
+        }
+
+
+    }
+    // Ir nodo a nodo y ver quien esta conectado con quien e ir haciendo cadenas
+}
+
+/**
+ * PRIVATE FUNCTIONS
+ */
+void Solver::generateNetwork(int version) {
 
     int n = this->flights.size();
     int size = n*2 + 2;
@@ -40,7 +72,12 @@ void Solver::generateNetwork() {
 
     this->network.addNodes(nodes);
 
-    //Flights
+    if(version == 0) generateEdgesV1(n,size);
+    else generateEdgesV2(n,size);
+}
+
+void Solver::generateEdgesV1(int n, int size) {
+
     map<int,vector<int>> listAdj;
     for(int i = 0; i < n; ++i) {
 
@@ -58,6 +95,10 @@ void Solver::generateNetwork() {
     }
 }
 
+void Solver::generateEdgesV2(int n, int size) {
+
+}
+
 bool Solver::canConnect(int i, int j) {
 
     bool samePlace = (flights[i].getDestination() == flights[j].getOrigin());
@@ -67,9 +108,3 @@ bool Solver::canConnect(int i, int j) {
     return false;
 }
 
-
-void Solver::solveVersion1() {
-    EKAlgoritm algorithm;
-
-    int max = algorithm.EK(this->network);
-}

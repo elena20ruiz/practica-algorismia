@@ -20,9 +20,7 @@ public:
 
     int getOrigin() const;
     int getDestination() const;
-
     int getHI() const;
-
     int getHF() const;
 
 };

@@ -14,8 +14,8 @@ private:
     std::vector<int> nodes;
 
     std::vector< std::vector<bool> > adjMatrix;
-    std::vector< std::map<int,int> > capMatrix;
-    std::vector< std::map<int,int> > flowMatrix;
+    std::vector< std::vector<int>  > capMatrix;
+    std::vector< std::vector<int>  > flowMatrix;
 
     int idSource;
     int idSink;
@@ -29,18 +29,15 @@ public:
     void setIdSource(int s);
     void setIdSink(int s);
 
-    int getIdSource();
-    int getIdSink();
+    int getPosSource();
+    int getPosSink();
 
     int getNodes();
-
 
     bool isConnected(int i, int j);
     int getCapValue(int i, int j);
     int getFlowValue(int i, int j);
 
-    void setCapValue(int i, int j, int v);
-    void setFlowValue(int i, int j, int v);
     void updateFlowValue(int i, int j, int v);
 
 };

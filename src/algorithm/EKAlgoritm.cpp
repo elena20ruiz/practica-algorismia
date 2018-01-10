@@ -3,7 +3,6 @@
 
 EKAlgoritm::EKAlgoritm() = default;
 
-
 int EKAlgoritm::EK(Network &network){
 
     int n = network.getNodes();
@@ -12,7 +11,7 @@ int EKAlgoritm::EK(Network &network){
 
     int maxFlow = 0;
     int flow = 0;
-    
+
     while(true) {
         pair<int,int> pair_aux(-1,0);
         vector<pair<int,int> > P(n,pair_aux);
@@ -40,7 +39,6 @@ int EKAlgoritm::EK(Network &network){
     return maxFlow;
 }
 
-
 int EKAlgoritm::BFS(Network &network, vector<pair<int, int>> &P, std::queue<int> &Q) {
     int u;
     int t = network.getNodes()-1;
@@ -51,7 +49,7 @@ int EKAlgoritm::BFS(Network &network, vector<pair<int, int>> &P, std::queue<int>
         for(int i = 0; i < network.getNodes();++i) {
             if(network.isConnected(u,i)) {
                 int cap = network.getCapValue(u,i);
-                int flow = network.getFlowValue(i,u);
+                int flow = network.getFlowValue(u,i);
                 if(cap - flow > 0 and P[i].first == -1) {
                     P[i].first = u;
 
