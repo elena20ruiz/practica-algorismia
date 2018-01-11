@@ -13,6 +13,7 @@ class Solver {
         Network network;
         std::vector<Flight> flights;
         std::queue< queue<int> > result;
+        int nPilots;
 
         void generateNetwork(int version);
         void generateEdgesV1(int n, int size);
@@ -27,6 +28,7 @@ class Solver {
         Solver(const std::vector<Flight> &flights, int version);
         void runAlgorithm(string root);
         int getOptim();
+        int getNPilots();
 
 
 };

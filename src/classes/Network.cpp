@@ -72,3 +72,7 @@ void Network::printRes() {
         cout << endl;
         }
 }
+
+void Network::updateCapValue(int i, int j, int v) {
+    this->networkMatrix[i][j].second += v;
+}

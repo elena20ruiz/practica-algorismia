@@ -35,6 +35,7 @@ public:
     int getFlowValue(int i, int j);
 
     void updateFlowValue(int i, int j, int v);
+    void updateCapValue(int i, int j, int v);
 
 };
 

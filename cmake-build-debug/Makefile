@@ -48,10 +48,10 @@ RM = /opt/clion-2017.3/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/elenaruiz/CLionProjects/practica-algorismia
+CMAKE_SOURCE_DIR = /home/erluec20/CLionProjects/practica-algorismia
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/elenaruiz/CLionProjects/practica-algorismia/cmake-build-debug
+CMAKE_BINARY_DIR = /home/erluec20/CLionProjects/practica-algorismia/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -91,9 +91,9 @@ test/fast: test
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/elenaruiz/CLionProjects/practica-algorismia/cmake-build-debug/CMakeFiles /home/elenaruiz/CLionProjects/practica-algorismia/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/erluec20/CLionProjects/practica-algorismia/cmake-build-debug/CMakeFiles /home/erluec20/CLionProjects/practica-algorismia/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/elenaruiz/CLionProjects/practica-algorismia/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/erluec20/CLionProjects/practica-algorismia/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -498,33 +498,6 @@ ContinuousUpdate/fast:
 	$(MAKE) -f CMakeFiles/ContinuousUpdate.dir/build.make CMakeFiles/ContinuousUpdate.dir/build
 .PHONY : ContinuousUpdate/fast
 
-main.o: main.cpp.o
-
-.PHONY : main.o
-
-# target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/practica.dir/build.make CMakeFiles/practica.dir/main.cpp.o
-.PHONY : main.cpp.o
-
-main.i: main.cpp.i
-
-.PHONY : main.i
-
-# target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/practica.dir/build.make CMakeFiles/practica.dir/main.cpp.i
-.PHONY : main.cpp.i
-
-main.s: main.cpp.s
-
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/practica.dir/build.make CMakeFiles/practica.dir/main.cpp.s
-.PHONY : main.cpp.s
-
 src/algorithm/EKAlgoritm.o: src/algorithm/EKAlgoritm.cpp.o
 
 .PHONY : src/algorithm/EKAlgoritm.o
@@ -606,6 +579,33 @@ src/classes/Network.cpp.s:
 	$(MAKE) -f CMakeFiles/practica.dir/build.make CMakeFiles/practica.dir/src/classes/Network.cpp.s
 .PHONY : src/classes/Network.cpp.s
 
+src/main.o: src/main.cpp.o
+
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) -f CMakeFiles/practica.dir/build.make CMakeFiles/practica.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) -f CMakeFiles/practica.dir/build.make CMakeFiles/practica.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) -f CMakeFiles/practica.dir/build.make CMakeFiles/practica.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
+
 src/problem/Solver.o: src/problem/Solver.cpp.o
 
 .PHONY : src/problem/Solver.o
@@ -671,9 +671,6 @@ help:
 	@echo "... ExperimentalSubmit"
 	@echo "... ContinuousStart"
 	@echo "... ContinuousUpdate"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
 	@echo "... src/algorithm/EKAlgoritm.o"
 	@echo "... src/algorithm/EKAlgoritm.i"
 	@echo "... src/algorithm/EKAlgoritm.s"
@@ -683,6 +680,9 @@ help:
 	@echo "... src/classes/Network.o"
 	@echo "... src/classes/Network.i"
 	@echo "... src/classes/Network.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 	@echo "... src/problem/Solver.o"
 	@echo "... src/problem/Solver.i"
 	@echo "... src/problem/Solver.s"

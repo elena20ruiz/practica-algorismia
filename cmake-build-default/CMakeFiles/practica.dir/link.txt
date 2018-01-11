@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/practica.dir/src/main.cpp.o CMakeFiles/practica.dir/src/classes/Network.cpp.o CMakeFiles/practica.dir/src/problem/Solver.cpp.o CMakeFiles/practica.dir/src/classes/Flight.cpp.o CMakeFiles/practica.dir/src/algorithm/EKAlgoritm.cpp.o  -o practica 

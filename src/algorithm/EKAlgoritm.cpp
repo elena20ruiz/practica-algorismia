@@ -53,8 +53,7 @@ int EKAlgoritm::BFS(Network &network, vector<pair<int, int>> &P, std::queue<int>
                 if(cap - flow > 0 and P[i].first == -1) {
                     P[i].first = u;
 
-                    P[i].second = P[u].second; // The minimum
-                    if((cap-flow) < P[u].second) P[i].second = (cap-flow);
+                    P[i].second = min(P[u].second,(cap-flow));
 
                     if(i != t) Q.push(i);
                     else return P[t].second;
@@ -66,4 +65,3 @@ int EKAlgoritm::BFS(Network &network, vector<pair<int, int>> &P, std::queue<int>
 
     return 0;
 }
-

@@ -13,38 +13,32 @@ Solver::Solver(const std::vector<Flight> &flights, int version) {
 
     this->flights = flights;
     this->network = Network();
+    this->nPilots = 0;
     generateNetwork(version);
 }
-
-
 
 void Solver::runAlgorithm(string root) {
 
 
-    ofstream c;
+    ofstream c,csv;
     c.open("com.txt", fstream::in | fstream::out | fstream::app);
     c << this->flights.size() << " - ";
-    
-  
-    ofstream csv;
-    csv.open ("time.csv", fstream::in | fstream::out | fstream::app);
-    csv << this->flights.size() << ";";
-    
-    
-    
-    const clock_t begin_time = clock();
 
+
+    // PROBLEMA -------------------------------------------
     EKAlgoritm algorithm;
     int max = algorithm.EK(this->network);
-
-    csv << float( clock () - begin_time ) /  CLOCKS_PER_SEC << ";";
-
-
     generateResult();
-    c << getOptim() << endl;
+    //-----------------------------------------------------
+
     ofstream res;
     res.open ("Results1.txt", fstream::in | fstream::out | fstream::app);
     res << root << " " << result.size() << endl;
+
+    c << getOptim() << endl;
+
+    this->nPilots =  result.size();
+
     printResult();
 }
 
@@ -93,8 +87,6 @@ void Solver::generateResult() {
  * PRIVATE FUNCTIONS
  */
 
-
-
 void Solver::generateNetwork(int version) {
 
     int n = this->flights.size();
@@ -108,10 +100,8 @@ void Solver::generateNetwork(int version) {
 
 void Solver::generateEdgesV1(int n, int size) {
 
-    map<int,vector<int>> listAdj;
     for(int i = 0; i < n; ++i) {
 
-        bool isPosible = true;
         int j = 0;
         while(j < n) {  //Mentres no hagi trobat cap avio que no arribi a agafar-lo
 
@@ -156,14 +146,6 @@ int Solver::foundConnection(int i, int nFlights) {
 
 void Solver::printResult() {
 
-    // TIME FILE ------------------------------------------
-
-    ofstream csv;
-    csv.open ("time.csv", fstream::in | fstream::out | fstream::app);
-    csv << result.size() << endl;
-
-
-
     // RESULTS FILE ---------------------------------------
 
     ofstream res;
@@ -199,5 +181,9 @@ int Solver::getOptim() {
         }
     }
     return i;
+}
+
+int Solver::getNPilots() {
+    return this->nPilots;
 }
 
