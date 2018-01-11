@@ -16,17 +16,22 @@ Solver::Solver(const std::vector<Flight> &flights, int version) {
     generateNetwork(version);
 }
 
+
+
 void Solver::runAlgorithm(string root) {
+
 
     ofstream c;
     c.open("com.txt", fstream::in | fstream::out | fstream::app);
     c << this->flights.size() << " - ";
-
-
+    
+  
     ofstream csv;
     csv.open ("time.csv", fstream::in | fstream::out | fstream::app);
     csv << this->flights.size() << ";";
-
+    
+    
+    
     const clock_t begin_time = clock();
 
     EKAlgoritm algorithm;
@@ -45,6 +50,7 @@ void Solver::runAlgorithm(string root) {
 
 void Solver::generateResult() {
 
+
     int nFlights = this->flights.size();
     vector<int> connections(nFlights+1,-1);
 
@@ -57,8 +63,6 @@ void Solver::generateResult() {
 
     int pos = 0;
     vector<bool> used(n,false);
-
-
 
 
     for(int i = 1; i <= nFlights; ++i) {
@@ -80,12 +84,17 @@ void Solver::generateResult() {
         }
         ++pos;
     }
+    
+
     // Ir nodo a nodo y ver quien esta conectado con quien e ir haciendo cadenas
 }
 
 /**
  * PRIVATE FUNCTIONS
  */
+
+
+
 void Solver::generateNetwork(int version) {
 
     int n = this->flights.size();
@@ -100,30 +109,33 @@ void Solver::generateNetwork(int version) {
 void Solver::generateEdgesV1(int n, int size) {
 
     map<int,vector<int>> listAdj;
-    for(int i = 1; i <= n; ++i) {
+    for(int i = 0; i < n; ++i) {
 
         bool isPosible = true;
-        int j = 1;
-        while(isPosible and j <= i) {  //Mentres no hagi trobat cap avio que no arribi a agafar-lo
+        int j = 0;
+        while(j < n) {  //Mentres no hagi trobat cap avio que no arribi a agafar-lo
 
             if(canConnect(i,j)){
-                network.addEdge(i,j+n,1);
+                network.addEdge(i+1,j+n+1,1);
             }
-            --j;
+            ++j;
         }
-        network.addEdge(0,i,1);    //Source
-        network.addEdge(i+n,size-1,1); //Sink
+        network.addEdge(0,i+1,1);    //Source
+        network.addEdge(i+n+1,size-1,1); //Sink
     }
+
 }
 
 void Solver::generateEdgesV2(int n, int size) {
-
+        generateEdgesV1(n,size);
+        
 }
 
 bool Solver::canConnect(int i, int j) {
 
+
     bool samePlace = (flights[i].getDestination() == flights[j].getOrigin());
-    bool goodTime = (flights[i].getHF()+15 < flights[j].getHI());
+    bool goodTime = (flights[i].getHF() + 15 <= flights[j].getHI());
 
     if(samePlace and goodTime) return true;
     return false;

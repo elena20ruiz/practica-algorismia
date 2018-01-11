@@ -4,6 +4,8 @@
 
 #include <vector>
 #include <map>
+#include <iostream>
+#include <fstream>
 
 
 using namespace std;
@@ -21,7 +23,8 @@ public:
 
     void addNodes(int n);
     void addEdge(int i, int j, int c);
-
+    
+    void printRes();
     int getPosSource();
     int getPosSink();
 

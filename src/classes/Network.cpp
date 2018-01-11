@@ -1,5 +1,7 @@
 
-
+#include <iostream>
+#include <fstream>
+#include <string.h>
 #include "Network.h"
 
 
@@ -47,3 +49,26 @@ void Network::updateFlowValue(int i, int j, int v) {
     this->networkMatrix[i][j].first += v;
 }
 
+void Network::printRes() {
+    
+        for(int i = 0; i < adjMatrix.size(); ++i) {
+                cout << i << ":  ";
+                for(int j = 0; j < adjMatrix.size(); ++j) {
+                    
+                        if(adjMatrix[i][j]) cout << "1 ";
+                        else cout << "0 ";
+                }
+                cout << endl;
+        }
+        
+        cout << endl;
+        
+        for(int i = 0; i < networkMatrix.size(); ++i) {
+        cout << i << ":  ";
+        for(int j = 0; j < networkMatrix.size(); ++j) {
+            
+                cout << networkMatrix[i][j].first << " ";
+        }
+        cout << endl;
+        }
+}

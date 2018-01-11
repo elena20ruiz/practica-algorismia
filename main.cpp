@@ -8,22 +8,23 @@ void readFile(string root, int version, string id);
 
 using namespace std;
 
+
 int main() {
 
     vector<Flight> flights;
 
     int n;
-    int instance = 30;
+    int instance = 2;
     string root = "instance_100_";
     while(instance <= 30) {
-        n = 10;
+        n = 1;
         while (n <= 10) {
 
             string ins = to_string(instance);
             string strn = to_string(n);
-            string file = "../Benchmark/" + root + ins + string("_") + strn + string(".air");
+            string file = "Benchmark/" + root + ins + string("_") + strn + string(".air");
 
-            file = "../input.txt";
+            //file = "input.txt";
             readFile(file,0,ins + "_" + strn);
             ++n;
         }
@@ -49,6 +50,12 @@ void readFile(string root, int version, string id_exp) {
 
     ofstream csv;
     csv.open ("time.csv", fstream::in | fstream::out | fstream::app);
+    
+    // Start cols
+    csv << "id_exp" << "n_flights";
+    
+    
+    
     csv << id_exp << ";";
 
     ifstream file(root);
