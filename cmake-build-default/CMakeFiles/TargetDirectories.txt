@@ -1,3 +1,0 @@
-/home/erluec20/CLionProjects/practica-algorismia/cmake-build-default/CMakeFiles/rebuild_cache.dir
-/home/erluec20/CLionProjects/practica-algorismia/cmake-build-default/CMakeFiles/edit_cache.dir
-/home/erluec20/CLionProjects/practica-algorismia/cmake-build-default/CMakeFiles/practica.dir

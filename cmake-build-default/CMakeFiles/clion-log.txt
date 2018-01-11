@@ -1,4 +1,0 @@
-/opt/clion-2017.3/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE= -G "CodeBlocks - Unix Makefiles" /home/erluec20/CLionProjects/practica-algorismia
--- Configuring done
--- Generating done
--- Build files have been written to: /home/erluec20/CLionProjects/practica-algorismia/cmake-build-default
