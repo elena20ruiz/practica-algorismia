@@ -13,7 +13,6 @@ public:
 
     EKAlgoritm();
 
-    bool correctRequisites();
 
     int EK(Network &network);
 

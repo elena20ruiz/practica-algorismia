@@ -1,0 +1,9 @@
+Benchmark/instance_100_2_1.air 60
+Benchmark/instance_100_2_2.air 57
+Benchmark/instance_100_2_3.air 53
+Benchmark/instance_100_2_4.air 56
+Benchmark/instance_100_2_5.air 52
+Benchmark/instance_100_2_6.air 49
+Benchmark/instance_100_2_7.air 51
+Benchmark/instance_100_2_8.air 67
+Benchmark/instance_100_2_9.air 63

@@ -11,23 +11,16 @@ using namespace std;
 class Network {
 
 private:
-    std::vector<int> nodes;
+    int n;
 
     std::vector< std::vector<bool> > adjMatrix;
-    std::vector< std::vector<int>  > capMatrix;
-    std::vector< std::vector<int>  > flowMatrix;
-
-    int idSource;
-    int idSink;
+    std::vector< std::vector< pair<int,int> >  > networkMatrix;
 
 public:
     Network();
 
-    void addNodes(const std::vector<int> &nodes);
+    void addNodes(int n);
     void addEdge(int i, int j, int c);
-
-    void setIdSource(int s);
-    void setIdSink(int s);
 
     int getPosSource();
     int getPosSink();

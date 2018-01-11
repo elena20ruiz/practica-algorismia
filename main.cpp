@@ -4,33 +4,33 @@
 #include "src/problem/Solver.h"
 #include <string.h>
 
-void readFile(string basic_string);
+void readFile(string root, int version, string id);
 
 using namespace std;
 
 int main() {
 
+    vector<Flight> flights;
 
-/*
-    int n = 1;
-    int instance = 1;
-    string root = "../Benchmark/instance_100_";
-    while(instance < 30) {
-        while (n < 10) {
+    int n;
+    int instance = 30;
+    string root = "instance_100_";
+    while(instance <= 30) {
+        n = 10;
+        while (n <= 10) {
 
             string ins = to_string(instance);
             string strn = to_string(n);
-            string file = root + ins + string("_") + strn + string(".air");
+            string file = "../Benchmark/" + root + ins + string("_") + strn + string(".air");
 
-            readFile(file,0);
+            file = "../input.txt";
+            readFile(file,0,ins + "_" + strn);
             ++n;
         }
         ++instance;
     }
-*/
+    /*
 
-
-    vector<Flight> flights;
     Flight transition(0,1,0,3);
     flights.push_back(transition);
     Flight transition2(1,2,4,5);
@@ -40,9 +40,16 @@ int main() {
 
     Solver solver(flights,0);
     solver.runAlgorithm();
+
+*/
 }
 
-void readFile(string root, int version) {
+
+void readFile(string root, int version, string id_exp) {
+
+    ofstream csv;
+    csv.open ("time.csv", fstream::in | fstream::out | fstream::app);
+    csv << id_exp << ";";
 
     ifstream file(root);
     if(file.good()) {
@@ -59,11 +66,10 @@ void readFile(string root, int version) {
 
         }
 
-        Solver solver(flights,version);
-        solver.runAlgorithm();
+        Solver solver(flights,0);
+        solver.runAlgorithm(root);
     }
     else cout << "BAD" << endl;
 
 }
-
 
