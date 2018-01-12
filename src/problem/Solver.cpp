@@ -24,6 +24,7 @@ void Solver::runAlgorithm(string root, int version) {
     c.open("com.txt", fstream::in | fstream::out | fstream::app);
     c << this->flights.size() << " - ";
 
+
     // PROBLEMA -------------------------------------------
     EKAlgoritm algorithm;
     int max = algorithm.EK(this->network);
@@ -35,10 +36,7 @@ void Solver::runAlgorithm(string root, int version) {
     ofstream res;
     res.open ("Results1.txt", fstream::in | fstream::out | fstream::app);
     res << root << " " << result.size() << endl;
-
     c << getOptim() << endl;
-
-    this->nPilots =  result.size();
 
     printResult();
 }
@@ -136,6 +134,16 @@ void Solver::generateEdgesV2(int n, int size) {
 
 void Solver::generateResult1() {
 
+    int n = this->flights.size();
+    vector<int> parent(n,-1);
+
+
+
+    /*
+     *
+     *
+
+
     int n = this->network.getNodes();
     int pos = 0;
 
@@ -149,7 +157,7 @@ void Solver::generateResult1() {
     vector<bool> used(n,false);
     for(int i = 1; i <= nFlights; ++i) {
 
-        if(!used[i]) {
+        if(!used[i] and connections[i] != -1) {
             queue<int> travel;
             travel.push(i);
 
@@ -166,9 +174,12 @@ void Solver::generateResult1() {
         }
         ++pos;
     }
+    this->nPilots = result.size();
 
 
     // Ir nodo a nodo y ver quien esta conectado con quien e ir haciendo cadenas
+
+     */
 }
 
 void Solver::generateResult2() {
@@ -288,7 +299,7 @@ void Solver::printResult() {
 
     ofstream res;
     res.open ("results.txt", fstream::in | fstream::out | fstream::app);
-    res << result.size() << endl;
+    res << this->nPilots << endl;
 
     while (!result.empty()){
         queue<int> list = result.front();

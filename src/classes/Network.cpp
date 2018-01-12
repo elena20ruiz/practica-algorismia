@@ -12,7 +12,6 @@ void Network::addEdge(int i, int j, int c) {
 
     this->adjMatrix[i].push_back(j);
     this->networkMatrix[i][j].second = c;
-    this->networkMatrix[j][i].second = -1;
 }
 
 void Network::addNodes(int n) {

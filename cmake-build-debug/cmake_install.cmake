@@ -1,4 +1,4 @@
-# Install script for directory: /home/erluec20/CLionProjects/practica-algorismia
+# Install script for directory: /home/elenaruiz/CLionProjects/practica-algorismia
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/erluec20/CLionProjects/practica-algorismia/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/elenaruiz/CLionProjects/practica-algorismia/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

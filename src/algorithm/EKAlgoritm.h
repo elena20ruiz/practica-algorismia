@@ -13,10 +13,9 @@ public:
 
     EKAlgoritm();
 
-
     int EK(Network &network);
 
-    int BFS(Network &network, vector<pair<int, int>> &P, std::queue<int> &Q);
+    int BFS(Network &network, vector<int> &P);
 };
 
 #endif //PRACTICA_EKALGORITM_H

@@ -3,6 +3,7 @@
 #include <vector>
 #include "problem/Solver.h"
 #include <string.h>
+#include <ctime>
 
 void readFile(string root, int version, string id);
 
@@ -29,17 +30,17 @@ int main() {
 
 
     int n;
-    int instance = 2;
+    int instance = 10;
     string root = "instance_100_";
-    while(instance <= 30) {
+    while(instance <= 10) {
         n = 1;
         while (n <= 10) {
 
             string ins = to_string(instance);
             string strn = to_string(n);
-            string file = "Benchmark/" + root + ins + string("_") + strn + string(".air");
+            string file = "../Benchmark/" + root + ins + string("_") + strn + string(".air");
 
-            file = "input.txt";
+            //file = "../input2.txt";
             readFile(file,0,ins + "_" + strn);
             ++n;
         }
@@ -73,16 +74,14 @@ void readFile(string root, int version, string id_exp) {
         while (file >> o >> destination >> hI >> hF) {
 
             origen = std::stoi(o);
-
             Flight transition(origen, destination, hI, hF);
             flights.push_back(transition);
 
         }
 
 
-
         // VERSION 1------------------------------------------------------
-       clock_t begin_time = clock();
+        clock_t begin_time = clock();
 
         Solver solver(flights,0);
         solver.runAlgorithm(root,0);
@@ -98,7 +97,7 @@ void readFile(string root, int version, string id_exp) {
 
 
         // VERSION 2 ------------------------------------------------------
-        begin_time = clock();
+    /*    begin_time = clock();
 
         solver = Solver(flights,1);
         solver.runAlgorithm(root,1);
@@ -110,7 +109,7 @@ void readFile(string root, int version, string id_exp) {
         csv2.open ("time2.csv", fstream::in | fstream::out | fstream::app);
         csv2 << id_exp << ";" <<  flights.size() << ";"
             << solver.getNPilots() << ";" << time << ";" << endl;
-        csv2.close();
+        csv2.close();*/
         //------------------------------------------------------------------
 
 

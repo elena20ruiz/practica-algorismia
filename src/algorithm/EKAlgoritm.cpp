@@ -1,4 +1,5 @@
 #include <limits>
+#include <climits>
 #include "EKAlgoritm.h"
 
 EKAlgoritm::EKAlgoritm() = default;
@@ -13,57 +14,59 @@ int EKAlgoritm::EK(Network &network){
     int flow = 0;
 
     while(true) {
-        pair<int,int> pair_aux(-1,0);
-        vector<pair<int,int> > P(n,pair_aux);
-        P[s].first = -2;
-        P[s].second = 99999999;
 
-        queue<int> Q;
-        Q.push(s);
-        flow = BFS(network,P,Q);
+        vector< int> P(n,-1);
+
+        P[s] = s;
+        flow = BFS(network,P);
 
         if(flow == 0) break;
         maxFlow += flow;
 
         int v = t;
-        int u;
-        while( v != s) {
-            u = P[v].first;
+        while(P[v] != v) {
+            int u = P[v];
             network.updateFlowValue(u,v,flow);
             network.updateFlowValue(v,u,-flow);
             v = u;
         }
 
-
     }
     return maxFlow;
 }
 
-int EKAlgoritm::BFS(Network &network, vector<pair<int, int>> &P, std::queue<int> &Q) {
-    int u;
-    int t = network.getNodes()-1;
-    while(!Q.empty()){
-        u = Q.front();
+int EKAlgoritm::BFS(Network &network, vector<int> &P) {
+
+    int n = network.getNodes();
+    int t = n-1;
+    int s = 0;
+    vector<int> M = vector<int>(n);
+    M[0] = INT_MAX;
+
+
+    queue<int> Q;
+    Q.push(s);
+
+    while (!Q.empty()) {
+        int u = Q.front();
         Q.pop();
 
-        for(int j = 0; j < network.getNNodes(u);++j) {
+        for(int v = 0; v < n; ++v) {
+            int c = network.getCapValue(u,v);
+            int f = network.getFlowValue(u,v);
 
-            int i = network.getNode(u,j);
+            if( ((c-f) >0) && P[v] == -1){
 
-            int cap = network.getCapValue(u,i);
-            int flow = network.getFlowValue(u,i);
+                P[v] = u;
+                M[v] = min(M[u], c-f);
 
-            if(cap - flow > 0 and P[i].first == -1) {
-
-                P[i].first = u;
-                P[i].second = min(P[u].second,(cap-flow));
-
-                if(i != t) Q.push(i);
-                else return P[t].second;
+                if(v!=t) Q.push(v);
+                else return M[t];
             }
-        }
 
+        }
     }
 
     return 0;
 }
+

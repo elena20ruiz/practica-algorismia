@@ -4,14 +4,14 @@
 
 
 # Configuration directories and files
-SourceDirectory: /home/erluec20/CLionProjects/practica-algorismia
-BuildDirectory: /home/erluec20/CLionProjects/practica-algorismia/cmake-build-debug
+SourceDirectory: /home/elenaruiz/CLionProjects/practica-algorismia
+BuildDirectory: /home/elenaruiz/CLionProjects/practica-algorismia/cmake-build-debug
 
 # Where to place the cost data store
 CostDataFile: 
 
 # Site is something like machine.domain, i.e. pragmatic.crd
-Site: erluec20
+Site: elenaruiz
 
 # Build name is osname-revision-compiler, i.e. Linux-2.4.2-2smp-c++
 BuildName: Linux-c++
@@ -33,7 +33,7 @@ ScpCommand: /usr/bin/scp
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "/opt/clion-2017.3/bin/cmake/bin/cmake" "/home/erluec20/CLionProjects/practica-algorismia"
+ConfigureCommand: "/opt/clion-2017.3/bin/cmake/bin/cmake" "/home/elenaruiz/CLionProjects/practica-algorismia"
 MakeCommand: /opt/clion-2017.3/bin/cmake/bin/cmake --build . --config "${CTEST_CONFIGURATION_TYPE}"
 DefaultCTestConfigurationType: Release
 
@@ -70,7 +70,7 @@ UpdateType: git
 
 # Compiler info
 Compiler: /usr/bin/c++
-CompilerVersion: 6.2.0
+CompilerVersion: 6.3.0
 
 # Dynamic analysis (MemCheck)
 PurifyCommand: 
