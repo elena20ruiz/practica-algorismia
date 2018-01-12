@@ -11,15 +11,14 @@
  * PUBLIC FUNCTIONS
  */
 
-Solver::Solver(const std::vector<Flight> &flights, int version) {
-
+SolverBi::SolverBi(const std::vector<Flight> &flights, int version) {
     this->flights = flights;
     this->network = Network();
     this->nPilots = 0;
     generateNetwork(version);
 }
 
-void Solver::runAlgorithm(string root, int version) {
+void SolverBi::runAlgorithm(string root, int version) {
 
     ofstream c,csv;
     c.open("com.txt", fstream::in | fstream::out | fstream::app);
@@ -30,7 +29,7 @@ void Solver::runAlgorithm(string root, int version) {
     EKAlgoritm algorithm;
     int max = algorithm.EK(this->network);
 
-    if(version==0) generateResult1();
+    if(version == 2) generateResult1();
     else generateResult2();
     //-----------------------------------------------------
 
@@ -47,18 +46,18 @@ void Solver::runAlgorithm(string root, int version) {
  * PRIVATE FUNCTIONS
  */
 
-void Solver::generateNetwork(int version) {
+void SolverBi::generateNetwork(int version) {
 
     int n = this->flights.size();
     int size = n*2 + 2;
 
     this->network.addNodes(size);
 
-    if(version == 0) generateEdgesV1(n,size);
+    if(version == 2) generateEdgesV1(n,size);
     else generateEdgesV2(n,size);
 }
 
-void Solver::generateEdgesV1(int n, int size) {
+void SolverBi::generateEdgesV1(int n, int size) {
 
     for(int i = 0; i < n; ++i) {
 
@@ -76,7 +75,7 @@ void Solver::generateEdgesV1(int n, int size) {
 
 }
 
-void Solver::generateEdgesV2(int n, int size) {
+void SolverBi::generateEdgesV2(int n, int size) {
 
     /*
         generateEdgesV1(n,size);
@@ -125,7 +124,7 @@ void Solver::generateEdgesV2(int n, int size) {
             while(!queue.empty()) {
                 int aux2 = queue.front();
                 queue.pop();
-                for(int j = 0; j < network.adjMatrix[i2].size(); ++j){
+                for(int j = 0; j < network.getNNodes(i2); ++j){
                     int v = network.getNode(i,j);
                     network.addEdge(aux2,v,1);
                 }
@@ -133,10 +132,10 @@ void Solver::generateEdgesV2(int n, int size) {
     }
 }
 
-void Solver::generateResult1() {
+void SolverBi::generateResult1() {
 
     int n = this->flights.size();
-    vector<int> parent(n,-1);
+    vector<int> parent(n+1,-1);
 
     for(int i = n+1; i <= 2*n+1; ++i) {
         int j = 1;
@@ -145,7 +144,6 @@ void Solver::generateResult1() {
             int x = i-n;
             if(network.getFlowValue(j,i) == 1) {
                 trobat = true;
-
                 parent[x] = j;
             }
             ++j;
@@ -174,14 +172,13 @@ void Solver::generateResult1() {
     this->nPilots = result.size();
 }
 
-void Solver::generateResult2() {
+void SolverBi::generateResult2() {
 }
 
 
 //CONSULTS -------------------------------------------------
 
-
-bool Solver::canConnect(int i, int j) {
+bool SolverBi::canConnect(int i, int j) {
 
     bool samePlace = (flights[i].getDestination() == flights[j].getOrigin());
     bool goodTime = (flights[i].getHF() + 15 <= flights[j].getHI());
@@ -190,7 +187,7 @@ bool Solver::canConnect(int i, int j) {
     return false;
 }
 
-int Solver::foundConnection(int i, int nFlights) {
+int SolverBi::foundConnection(int i, int nFlights) {
 
     int j = 1;
     while(j <= nFlights) {
@@ -201,7 +198,7 @@ int Solver::foundConnection(int i, int nFlights) {
     return -1;
 }
 
-int Solver::getOptim() {
+int SolverBi::getOptim() {
 
     int i = 0;
     queue< stack<int> > Q = this->result;
@@ -218,13 +215,13 @@ int Solver::getOptim() {
     return i;
 }
 
-int Solver::getNPilots() {
+int SolverBi::getNPilots() {
     return this->nPilots;
 }
 
 //OUTPUT -------------------------------------------------
 
-void Solver::printResult() {
+void SolverBi::printResult() {
 
     // RESULTS FILE ---------------------------------------
 
@@ -237,12 +234,9 @@ void Solver::printResult() {
         stack<int> list = result.front();
 
         result.pop();
-
         while(!list.empty()){
-
             res << list.top() << " ";
             list.pop();
-
         }
         res << endl;
     }

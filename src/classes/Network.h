@@ -14,13 +14,14 @@ class Network {
 
 private:
     int n;
+    std::vector< std::vector<int> > adjMatrix;
+    std::vector< std::vector< pair<int,int> >  > networkMatrix;
+
+    // FOR CIRCULATION PROBLEM
+    std::vector<int> nodes; //position i contains it demands
 
 public:
     Network();
-
-
-    std::vector< std::vector<int> > adjMatrix;
-    std::vector< std::vector< pair<int,int> >  > networkMatrix;
 
     void addNodes(int n);
     void addEdge(int i, int j, int c);
@@ -37,10 +38,11 @@ public:
 
     void updateFlowValue(int i, int j, int v);
 
-
     vector<int> adjIntersection(int i, int j, int nF);
 
     bool exist(int i, int j);
+
+    void generateDemands();
 };
 
 #endif //PRACTICA_NETWORK_H

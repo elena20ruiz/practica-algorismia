@@ -5,7 +5,6 @@
 #include <algorithm>
 #include "Network.h"
 
-
 Network::Network() = default;
 
 void Network::addEdge(int i, int j, int c) {
@@ -22,17 +21,19 @@ void Network::addNodes(int n) {
 
 }
 
-int Network::getPosSource(){
-    return 0;
-}
-int Network::getPosSink(){
-    return (this->n - 1);
-}
 
+// SETTERS AND GETTERS ---------------------------------------------
 int Network::getNodes() {
     return this->n;
 }
 
+int Network::getNNodes(int i) {
+    return this->adjMatrix[i].size();
+}
+
+int Network::getNode(int i, int j) {
+    return this->adjMatrix[i][j];
+}
 
 int Network::getCapValue(int i, int j) {
     return this->networkMatrix[i][j].second;
@@ -46,36 +47,16 @@ void Network::updateFlowValue(int i, int j, int v) {
     this->networkMatrix[i][j].first += v;
 }
 
-void Network::printRes() {
-    
-        for(int i = 0; i < adjMatrix.size(); ++i) {
-                cout << i << ":  ";
-                for(int j = 0; j < adjMatrix.size(); ++j) {
-                    
-                        if(adjMatrix[i][j]) cout << "1 ";
-                        else cout << "0 ";
-                }
-                cout << endl;
-        }
-        
-        cout << endl;
-        
-        for(int i = 0; i < networkMatrix.size(); ++i) {
-        cout << i << ":  ";
-        for(int j = 0; j < networkMatrix.size(); ++j) {
-            
-                cout << networkMatrix[i][j].first << " ";
-        }
-        cout << endl;
-        }
-}
-
-int Network::getNNodes(int i) {
-    return this->adjMatrix[i].size();
-}
-
-int Network::getNode(int i, int j) {
-    return this->adjMatrix[i][j];
+bool Network::exist(int i, int j) {
+    int k = 0;
+    bool trobat = false;
+    int aux;
+    while(!trobat and k < adjMatrix[i].size()) {
+        aux = adjMatrix[i][k];
+        if (aux == j) trobat = true;
+        ++k;
+    }
+    return false;
 }
 
 vector<int> Network::adjIntersection(int i, int j, int nF) {
@@ -106,14 +87,31 @@ vector<int> Network::adjIntersection(int i, int j, int nF) {
     return v3;
 }
 
-bool Network::exist(int i, int j) {
-    int k = 0;
-    bool trobat = false;
-    int aux;
-    while(!trobat and k < adjMatrix[i].size()) {
-        aux = adjMatrix[i][k];
-        if (aux == j) trobat = true;
-        ++k;
+// OUTPUT--------------------------------------------------------
+void Network::printRes() {
+
+    for(int i = 0; i < adjMatrix.size(); ++i) {
+        cout << i << ":  ";
+        for(int j = 0; j < adjMatrix.size(); ++j) {
+
+            if(adjMatrix[i][j]) cout << "1 ";
+            else cout << "0 ";
+        }
+        cout << endl;
     }
-    return false;
+
+    cout << endl;
+
+    for(int i = 0; i < networkMatrix.size(); ++i) {
+        cout << i << ":  ";
+        for(int j = 0; j < networkMatrix.size(); ++j) {
+
+            cout << networkMatrix[i][j].first << " ";
+        }
+        cout << endl;
+    }
+}
+
+void Network::generateDemands() {
+
 }

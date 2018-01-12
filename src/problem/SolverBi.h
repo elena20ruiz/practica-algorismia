@@ -8,12 +8,14 @@
 #include "../classes/Network.h"
 #include "../classes/Flight.h"
 
-class Solver {
+class SolverBi {
 
     private:
         Network network;
         std::vector<Flight> flights;
         std::queue< std::stack<int> > result;
+
+        // FOR VERSION 2
         std::map< pair<int,int>, int > connectedBy;
 
         int nPilots;
@@ -37,7 +39,7 @@ class Solver {
 
 
     public:
-        Solver(const std::vector<Flight> &flights, int version);
+        SolverBi(const std::vector<Flight> &flights, int version);
 
         void runAlgorithm(string root,int version);
 

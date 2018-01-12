@@ -2,32 +2,45 @@
 #include <fstream>
 #include <vector>
 #include "problem/SolverBi.h"
+#include "problem/SolverCir.h"
 #include <ctime>
 
-void readFile(string root, int version, string id);
+void iniFiles();
+void readFlights(vector<Flight> &flights, string f);
+void ejecutar_tests(int version);
+void runTest(vector<Flight> &flights, int version, string f);
+void ejecutar_facil(int x);
 
 using namespace std;
 
 
 int main() {
 
+
+    iniFiles();
+
+    cout << "Escoge opción:" << endl;
+
+    cout << "1. Ejecutar test grafo circulacion version 1" << endl;
+    cout << "2. Ejecutar test grafo bipartido version 1" << endl;
+    cout << "3. Ejecutar test grafo bipartido version 2" << endl;
+
+
+    int x;
+    //cin >> x;
+    x = 2;
+    ejecutar_tests(x);
+    ejecutar_facil(x);
+}
+
+void ejecutar_facil(int x) {
+    string root = "../input2.txt";
     vector<Flight> flights;
+    readFlights(flights, root);
+    runTest(flights,x,root);
+}
 
-    // INI CSV--------------------------------------------------------
-
-    ofstream csv;
-    csv.open ("time.csv", fstream::in | fstream::out | fstream::app);
-    csv << "id_exp;" <<  "n_flights;" << "pilots;" << "time;" << endl;
-    csv.close();
-
-    // INI CSV-V2 ----------------------------------------------------
-
-    ofstream csv2;
-    csv2.open ("time2.csv", fstream::in | fstream::out | fstream::app);
-    csv2 << "id_exp;" <<  "n_flights;" << "pilots;" << "time;" << endl;
-    csv2.close();
-
-
+void ejecutar_tests(int version) {
     int n;
     int instance = 10;
     string root = "instance_100_";
@@ -37,35 +50,75 @@ int main() {
 
             string ins = to_string(instance);
             string strn = to_string(n);
-            string file = "../Benchmark/" + root + ins + string("_") + strn + string(".air");
 
-            //file = "../input2.txt";
-            readFile(file,0,ins + "_" + strn);
+            string root = "../Benchmark/" + root + ins + string("_") + strn + string(".air");
+            string file = ins + "_" + strn;
+
+
+            // LLAMADA ALGORISMO----------------------------------
+            vector<Flight> flights;
+            readFlights(flights,root);
+            runTest(flights,version,file);
+
+
+            //----------------------------------------------------
             ++n;
         }
         ++instance;
     }
+}
 
-/*
+void iniFiles() {
 
-    Flight transition(0,1,0,300);
-    flights.push_back(transition);
-    Flight transition2(1,2,400,500);
-    flights.push_back(transition2);
-    Flight transition3(1,2,500,600);
-    flights.push_back(transition3);
+    // INI CSV--------------------------------------------------------
+    ofstream csv;
+    csv.open ("time.csv", fstream::in | fstream::out | fstream::app);
+    csv << "id_exp;" <<  "n_flights;" << "pilots;" << "time;" << endl;
+    csv.close();
 
-    Solver solver(flights,0);
-    solver.runAlgorithm("la");
-*/
+    // INI CSV-V2 ----------------------------------------------------
+    ofstream csv2;
+    csv2.open ("time2.csv", fstream::in | fstream::out | fstream::app);
+    csv2 << "id_exp;" <<  "n_flights;" << "pilots;" << "time;" << endl;
+    csv2.close();
 
 }
 
-void readFile(string root, int version, string id_exp) {
+void runTest(vector<Flight> &flights, int version, string f) {
 
-    ifstream file(root);
+    clock_t begin_time = clock();
+
+    int pilots;
+
+    if(version == 1) {
+        SolverCir S(flights);
+        //S.runAlgorithm(root);
+        pilots = S.getNPilots();
+    }
+    else if(version == 2) {
+        SolverBi S(flights,version);
+        S.runAlgorithm(f,version);
+        pilots = S.getNPilots();
+
+    }
+    else if(version == 3) {
+        SolverBi S(flights,version);
+        S.runAlgorithm(f,version);
+        pilots = S.getNPilots();
+    }
+
+    ofstream csv;
+    csv.open ("time.csv", fstream::in | fstream::out | fstream::app);
+    csv << f << ";" <<  flights.size() << ";"
+        << pilots << ";" << time << ";" << endl;
+    csv.close();
+
+}
+
+void readFlights(vector<Flight> &flights, string f) {
+
+    ifstream file(f);
     if(file.good()) {
-        vector<Flight> flights;
         string o;
         int origen, destination, hI, hF;
 
@@ -76,45 +129,8 @@ void readFile(string root, int version, string id_exp) {
             flights.push_back(transition);
 
         }
-
-
-        // VERSION 1------------------------------------------------------
-        clock_t begin_time = clock();
-
-        Solver solver(flights,0);
-        solver.runAlgorithm(root,0);
-
-        float time = float( clock () - begin_time ) /  CLOCKS_PER_SEC ;
-
-        ofstream csv;
-        csv.open ("time.csv", fstream::in | fstream::out | fstream::app);
-        csv << id_exp << ";" <<  flights.size() << ";"
-                    << solver.getNPilots() << ";" << time << ";" << endl;
-        csv.close();
-        // ----------------------------------------------------------------
-
-
-        // VERSION 2 ------------------------------------------------------
-    /*    begin_time = clock();
-
-        solver = Solver(flights,1);
-        solver.runAlgorithm(root,1);
-
-        time = float( clock () - begin_time ) /  CLOCKS_PER_SEC ;
-
-
-        ofstream csv2;
-        csv2.open ("time2.csv", fstream::in | fstream::out | fstream::app);
-        csv2 << id_exp << ";" <<  flights.size() << ";"
-            << solver.getNPilots() << ";" << time << ";" << endl;
-        csv2.close();*/
-        //------------------------------------------------------------------
-
-
-
-
     }
-    else cout << "BAD" << endl;
+    else "BAD";
 
 }
 
