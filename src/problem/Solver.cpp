@@ -78,6 +78,8 @@ void Solver::generateEdgesV1(int n, int size) {
 }
 
 void Solver::generateEdgesV2(int n, int size) {
+
+    /*
         generateEdgesV1(n,size);
 
         for(int i = n+1; i <= 2*n; ++i) {
@@ -101,10 +103,36 @@ void Solver::generateEdgesV2(int n, int size) {
                     }
                 }
             }
-
         }
-}
 
+        */
+
+
+    generateEdgesV1(n,size);
+    queue<int> queue;
+    // por cada nodo
+    for(int i = n+1; i < 2*n; ++i){
+        // ver numero de nodos entrada
+        for(int j = 1; j <= n; ++j){
+            if(network.getCapValue(j,i)) {
+                int x = j;
+                queue.push(x);
+            }
+        }
+
+
+            int i2 = i - n;
+            // recorremos nodos salida (lista adyacencias de nodo i)
+            while(!queue.empty()) {
+                int aux2 = queue.front();
+                queue.pop();
+                for(int j = 0; j < network.adjMatrix[i2].size(); ++j){
+                    int v = network.getNode(i,j);
+                    network.addEdge(aux2,v,1);
+                }
+            }
+    }
+}
 
 void Solver::generateResult1() {
 
@@ -170,26 +198,33 @@ void Solver::generateResult2() {
 
 
     vector<bool> used(n,false);
+    queue<int> travel;
     for(int i = 1; i <= nFlights; ++i) {
 
         if(!used[i]) {
-            queue<int> travel;
+            travel = queue<int>();
             travel.push(i);
 
             int aux;
             if (connections[i].size() == 1) aux = connections[i][0];
             else {
-                travel.push(connections[i][0]);
+                int x = connections[i][0];
+                travel.push(x);
                 aux = connections[i][1];
             }
             if(aux != 1) {
-                while (aux != -1) {
-                    travel.push(aux);
-                    used[aux] = true;
-                    if (connections[i].size() == 1) aux = connections[i][0];
+                int aux2 = aux;
+                while (aux2 != -1) {
+                    travel.push(aux2);
+                    used[aux2] = true;
+
+                    aux = aux2;
+                    if (connections[aux].size() == 1) {
+                        aux2 = connections[aux][0];
+                    }
                     else {
-                        travel.push(connections[i][0]);
-                        aux = connections[i][1];
+                        travel.push(connections[aux][0]);
+                        aux2 = connections[aux][1];
                     }
                 }
             }
@@ -197,7 +232,6 @@ void Solver::generateResult2() {
         }
         ++pos;
     }
-
 }
 
 

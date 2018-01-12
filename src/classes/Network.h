@@ -39,6 +39,8 @@ public:
 
 
     vector<int> adjIntersection(int i, int j, int nF);
+
+    bool exist(int i, int j);
 };
 
 #endif //PRACTICA_NETWORK_H

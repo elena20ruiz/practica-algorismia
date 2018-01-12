@@ -90,9 +90,10 @@ vector<int> Network::adjIntersection(int i, int j, int nF) {
         int aux = adjMatrix[i][u] - nF;
         if (!adjMatrix[aux].empty()) {
             int v = 0;
+            int size = adjMatrix[aux].size();
             bool trobat = false;
             int aux2;
-            while(v < adjMatrix[aux].size() or !trobat){
+            while(v < size and !trobat){
                 aux2 = adjMatrix[aux][v];
                 if(aux2 - nF == j) {
                     trobat = true;
@@ -104,4 +105,16 @@ vector<int> Network::adjIntersection(int i, int j, int nF) {
     }
 
     return v3;
+}
+
+bool Network::exist(int i, int j) {
+    int k = 0;
+    bool trobat = false;
+    int aux;
+    while(!trobat and k < adjMatrix[i].size()) {
+        aux = adjMatrix[i][k];
+        if (aux == j) trobat = true;
+        ++k;
+    }
+    return false;
 }

@@ -29,10 +29,10 @@ int main() {
 
 
     int n;
-    int instance = 30;
+    int instance = 2;
     string root = "instance_100_";
     while(instance <= 30) {
-        n = 10;
+        n = 1;
         while (n <= 10) {
 
             string ins = to_string(instance);
@@ -84,8 +84,8 @@ void readFile(string root, int version, string id_exp) {
         // VERSION 1------------------------------------------------------
        clock_t begin_time = clock();
 
-        Solver solver(flights,1);
-        solver.runAlgorithm(root,1);
+        Solver solver(flights,0);
+        solver.runAlgorithm(root,0);
 
         float time = float( clock () - begin_time ) /  CLOCKS_PER_SEC ;
 
@@ -98,14 +98,14 @@ void readFile(string root, int version, string id_exp) {
 
 
         // VERSION 2 ------------------------------------------------------
-        /*begin_time = clock();
+        begin_time = clock();
 
         solver = Solver(flights,1);
         solver.runAlgorithm(root,1);
 
         time = float( clock () - begin_time ) /  CLOCKS_PER_SEC ;
 
-*/
+
         ofstream csv2;
         csv2.open ("time2.csv", fstream::in | fstream::out | fstream::app);
         csv2 << id_exp << ";" <<  flights.size() << ";"
