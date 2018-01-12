@@ -51,13 +51,13 @@ void ejecutar_tests(int version) {
             string ins = to_string(instance);
             string strn = to_string(n);
 
-            string root = "../Benchmark/" + root + ins + string("_") + strn + string(".air");
-            string file = ins + "_" + strn;
+            string root2 = "../Benchmark/" + root + ins + string("_") + strn + string(".air");
+            string file = root + ins + "_" + strn;
 
 
             // LLAMADA ALGORISMO----------------------------------
             vector<Flight> flights;
-            readFlights(flights,root);
+            readFlights(flights,root2);
             runTest(flights,version,file);
 
 
