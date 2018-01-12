@@ -13,6 +13,8 @@ class Solver {
         Network network;
         std::vector<Flight> flights;
         std::queue< queue<int> > result;
+        std::map< pair<int,int>, int > connectedBy;
+
         int nPilots;
 
         void generateNetwork(int version);
@@ -21,16 +23,20 @@ class Solver {
         bool canConnect(int i, int j);
         int foundConnection(int i, int nFlights);
         void printResult();
-        void generateResult();
+        void generateResult1();
+        void generateResult2();
+        int getOptim();
 
 
     public:
         Solver(const std::vector<Flight> &flights, int version);
-        void runAlgorithm(string root);
-        int getOptim();
+
+        void runAlgorithm(string root,int version);
+
         int getNPilots();
 
 
+    vector<int> hasMoreThanOneEdge();
 };
 
 

@@ -13,6 +13,21 @@ int main() {
 
     vector<Flight> flights;
 
+    // INI CSV--------------------------------------------------------
+
+    ofstream csv;
+    csv.open ("time.csv", fstream::in | fstream::out | fstream::app);
+    csv << "id_exp;" <<  "n_flights;" << "pilots;" << "time;" << endl;
+    csv.close();
+
+    // INI CSV-V2 ----------------------------------------------------
+
+    ofstream csv2;
+    csv2.open ("time2.csv", fstream::in | fstream::out | fstream::app);
+    csv2 << "id_exp;" <<  "n_flights;" << "pilots;" << "time;" << endl;
+    csv2.close();
+
+
     int n;
     int instance = 30;
     string root = "instance_100_";
@@ -49,14 +64,6 @@ int main() {
 
 void readFile(string root, int version, string id_exp) {
 
-    const clock_t begin_time = clock();
-
-    ofstream csv;
-    csv.open ("time.csv", fstream::in | fstream::out | fstream::app);
-    
-    // Start cols
-    csv << "id_exp;" <<  "n_flights;" << "pilots;" << "time;" << endl;
-
     ifstream file(root);
     if(file.good()) {
         vector<Flight> flights;
@@ -72,13 +79,43 @@ void readFile(string root, int version, string id_exp) {
 
         }
 
-        Solver solver(flights,0);
-        solver.runAlgorithm(root);
+
+
+        // VERSION 1------------------------------------------------------
+       clock_t begin_time = clock();
+
+        Solver solver(flights,1);
+        solver.runAlgorithm(root,1);
 
         float time = float( clock () - begin_time ) /  CLOCKS_PER_SEC ;
 
+        ofstream csv;
+        csv.open ("time.csv", fstream::in | fstream::out | fstream::app);
         csv << id_exp << ";" <<  flights.size() << ";"
                     << solver.getNPilots() << ";" << time << ";" << endl;
+        csv.close();
+        // ----------------------------------------------------------------
+
+
+        // VERSION 2 ------------------------------------------------------
+        /*begin_time = clock();
+
+        solver = Solver(flights,1);
+        solver.runAlgorithm(root,1);
+
+        time = float( clock () - begin_time ) /  CLOCKS_PER_SEC ;
+
+*/
+        ofstream csv2;
+        csv2.open ("time2.csv", fstream::in | fstream::out | fstream::app);
+        csv2 << id_exp << ";" <<  flights.size() << ";"
+            << solver.getNPilots() << ";" << time << ";" << endl;
+        csv2.close();
+        //------------------------------------------------------------------
+
+
+
+
     }
     else cout << "BAD" << endl;
 

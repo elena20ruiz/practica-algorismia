@@ -15,11 +15,12 @@ class Network {
 private:
     int n;
 
-    std::vector< std::vector<bool> > adjMatrix;
-    std::vector< std::vector< pair<int,int> >  > networkMatrix;
-
 public:
     Network();
+
+
+    std::vector< std::vector<int> > adjMatrix;
+    std::vector< std::vector< pair<int,int> >  > networkMatrix;
 
     void addNodes(int n);
     void addEdge(int i, int j, int c);
@@ -29,14 +30,15 @@ public:
     int getPosSink();
 
     int getNodes();
-
-    bool isConnected(int i, int j);
+    int getNNodes(int i);
+    int getNode(int i, int j);
     int getCapValue(int i, int j);
     int getFlowValue(int i, int j);
 
     void updateFlowValue(int i, int j, int v);
-    void updateCapValue(int i, int j, int v);
 
+
+    vector<int> adjIntersection(int i, int j, int nF);
 };
 
 #endif //PRACTICA_NETWORK_H

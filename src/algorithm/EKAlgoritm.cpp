@@ -46,18 +46,20 @@ int EKAlgoritm::BFS(Network &network, vector<pair<int, int>> &P, std::queue<int>
         u = Q.front();
         Q.pop();
 
-        for(int i = 0; i < network.getNodes();++i) {
-            if(network.isConnected(u,i)) {
-                int cap = network.getCapValue(u,i);
-                int flow = network.getFlowValue(u,i);
-                if(cap - flow > 0 and P[i].first == -1) {
-                    P[i].first = u;
+        for(int j = 0; j < network.getNNodes(u);++j) {
 
-                    P[i].second = min(P[u].second,(cap-flow));
+            int i = network.getNode(u,j);
 
-                    if(i != t) Q.push(i);
-                    else return P[t].second;
-                }
+            int cap = network.getCapValue(u,i);
+            int flow = network.getFlowValue(u,i);
+
+            if(cap - flow > 0 and P[i].first == -1) {
+
+                P[i].first = u;
+                P[i].second = min(P[u].second,(cap-flow));
+
+                if(i != t) Q.push(i);
+                else return P[t].second;
             }
         }
 
