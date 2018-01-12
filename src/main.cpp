@@ -42,7 +42,7 @@ void ejecutar_facil(int x) {
 
 void ejecutar_tests(int version) {
     int n;
-    int instance = 10;
+    int instance = 2;
     string root = "instance_100_";
     while(instance <= 10) {
         n = 1;
