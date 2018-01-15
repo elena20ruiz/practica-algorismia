@@ -22,8 +22,14 @@ private:
 
 public:
     SolverCir(const std::vector<Flight> &flights);
+
+    void runAlgorithm(string root);
+
     int getNPilots();
 
+    void generateResult();
+
+    void printResult();
 };
 
 

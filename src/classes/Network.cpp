@@ -115,3 +115,32 @@ void Network::printRes() {
 void Network::generateDemands() {
 
 }
+
+int Network::getPosSource() {
+    return this->source;
+}
+
+int Network::getPosSink() {
+    return this->sink;
+}
+
+void Network::setSourceAndSink(int i, int j) {
+    this->source = i;
+    this->sink = j;
+
+}
+
+void Network::setK(int i) {
+
+     this->networkMatrix[sink-1][0].second = i;
+     this->networkMatrix[sink-2][sink].second = i;
+
+}
+
+void Network::resetFlow() {
+    for(int i = 0; i < n; ++i) {
+        for(int j = 0; j < n; ++j) {
+            this->networkMatrix[i][j].first= 0;
+        }
+    }
+}

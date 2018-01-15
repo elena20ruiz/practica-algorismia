@@ -125,7 +125,7 @@ void SolverBi::generateEdgesV2(int n, int size) {
                 int aux2 = queue.front();
                 queue.pop();
                 for(int j = 0; j < network.getNNodes(i2); ++j){
-                    int v = network.getNode(i,j);
+                    int v = network.getNode(i2,j);
                     network.addEdge(aux2,v,1);
                 }
             }
@@ -173,6 +173,82 @@ void SolverBi::generateResult1() {
 }
 
 void SolverBi::generateResult2() {
+    int n = this->flights.size();
+    vector< vector<int> > parent(n+1,vector<int>(1,-1));
+
+    for(int i = n+1; i <= 2*n+1; ++i) {
+        int j = 1;
+        bool trobat = false;
+        while(j <=n and !trobat) {
+            int x = i-n;
+            if(network.getFlowValue(j,i) == 1) {
+                trobat = true;
+                if(network.exist(j,i))parent[x][0] = j;
+                else{
+                    int t = foundConnection(j,x);
+                    parent[x][0] = t;
+                    parent[x].push_back(j);
+                }
+            }
+            ++j;
+        }
+    }
+
+    vector<bool> used( 2*n+2,false);
+    stack<int> travel;
+    for(int i = 1; i <= n; ++i) {
+
+        if(!used[i]) {
+            travel = stack<int>();
+            travel.push(i);
+
+            int aux;
+            if (parent[i].size() == 1) aux = parent[i][0];
+            else {
+                int x = parent[i][0];
+                travel.push(x);
+                aux = parent[i][1];
+            }
+            if(aux != 1) {
+                int aux2 = aux;
+                while (aux2 != -1) {
+                    travel.push(aux2);
+                    used[aux2] = true;
+
+                    aux = aux2;
+                    if (parent[aux].size() == 1) {
+                        aux2 = parent[aux][0];
+                    }
+                    else {
+                        travel.push(parent[aux][0]);
+                        aux2 = parent[aux][1];
+                    }
+                }
+            }
+            result.push(travel);
+        }
+    }
+    /*
+    //Mirarmos lo que no tienen flow desde source
+    for(int i = 1; i <= n; ++i) {
+
+        if(network.getFlowValue(0,i)==0){
+
+            stack<int> S;
+            S.push(i);
+
+            int aux;
+            if(parent[i].size() == 1) aux = parent[i][0];
+            while( aux != -1) {
+
+                S.push(aux);
+                aux = parent[aux];
+            }
+            result.push(S);
+        }
+
+    }*/
+    this->nPilots = result.size();
 }
 
 

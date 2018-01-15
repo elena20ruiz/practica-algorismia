@@ -13,7 +13,6 @@ void ejecutar_facil(int x);
 
 using namespace std;
 
-
 int main() {
 
 
@@ -28,13 +27,13 @@ int main() {
 
     int x;
     //cin >> x;
-    x = 2;
-    ejecutar_tests(x);
+    x = 3;
+    //ejecutar_tests(x);
     ejecutar_facil(x);
 }
 
 void ejecutar_facil(int x) {
-    string root = "../input2.txt";
+    string root = "../input.txt";
     vector<Flight> flights;
     readFlights(flights, root);
     runTest(flights,x,root);
@@ -44,7 +43,7 @@ void ejecutar_tests(int version) {
     int n;
     int instance = 2;
     string root = "instance_100_";
-    while(instance <= 10) {
+    while(instance <=30) {
         n = 1;
         while (n <= 10) {
 
@@ -73,13 +72,13 @@ void iniFiles() {
     // INI CSV--------------------------------------------------------
     ofstream csv;
     csv.open ("time.csv", fstream::in | fstream::out | fstream::app);
-    csv << "id_exp;" <<  "n_flights;" << "pilots;" << "time;" << endl;
+    csv << "id_exp;" <<  "n_flights;" << "pilots;" <<  "time_prog;" << endl;
     csv.close();
 
     // INI CSV-V2 ----------------------------------------------------
     ofstream csv2;
     csv2.open ("time2.csv", fstream::in | fstream::out | fstream::app);
-    csv2 << "id_exp;" <<  "n_flights;" << "pilots;" << "time;" << endl;
+    csv2 << "id_exp;" <<  "n_flights;" << "pilots;" << "time;" << "time_prog;" << endl;
     csv2.close();
 
 }
@@ -92,7 +91,7 @@ void runTest(vector<Flight> &flights, int version, string f) {
 
     if(version == 1) {
         SolverCir S(flights);
-        //S.runAlgorithm(root);
+        S.runAlgorithm(f);
         pilots = S.getNPilots();
     }
     else if(version == 2) {
@@ -106,6 +105,8 @@ void runTest(vector<Flight> &flights, int version, string f) {
         S.runAlgorithm(f,version);
         pilots = S.getNPilots();
     }
+
+    float time = float( clock () - begin_time ) / CLOCKS_PER_SEC;
 
     ofstream csv;
     csv.open ("time.csv", fstream::in | fstream::out | fstream::app);

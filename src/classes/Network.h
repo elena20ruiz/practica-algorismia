@@ -20,6 +20,9 @@ private:
     // FOR CIRCULATION PROBLEM
     std::vector<int> nodes; //position i contains it demands
 
+    int source;
+    int sink;
+
 public:
     Network();
 
@@ -29,6 +32,8 @@ public:
     void printRes();
     int getPosSource();
     int getPosSink();
+
+    void setSourceAndSink(int i,int j);
 
     int getNodes();
     int getNNodes(int i);
@@ -43,6 +48,10 @@ public:
     bool exist(int i, int j);
 
     void generateDemands();
+
+    void setK(int i);
+
+    void resetFlow();
 };
 
 #endif //PRACTICA_NETWORK_H
