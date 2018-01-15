@@ -149,10 +149,16 @@
 		<Unit filename="/home/elenaruiz/CLionProjects/practica-algorismia/src/main.cpp">
 			<Option target="practica"/>
 		</Unit>
-		<Unit filename="/home/elenaruiz/CLionProjects/practica-algorismia/src/problem/Solver.cpp">
+		<Unit filename="/home/elenaruiz/CLionProjects/practica-algorismia/src/problem/SolverBi.cpp">
 			<Option target="practica"/>
 		</Unit>
-		<Unit filename="/home/elenaruiz/CLionProjects/practica-algorismia/src/problem/Solver.h">
+		<Unit filename="/home/elenaruiz/CLionProjects/practica-algorismia/src/problem/SolverBi.h">
+			<Option target="practica"/>
+		</Unit>
+		<Unit filename="/home/elenaruiz/CLionProjects/practica-algorismia/src/problem/SolverCir.cpp">
+			<Option target="practica"/>
+		</Unit>
+		<Unit filename="/home/elenaruiz/CLionProjects/practica-algorismia/src/problem/SolverCir.h">
 			<Option target="practica"/>
 		</Unit>
 		<Unit filename="/home/elenaruiz/CLionProjects/practica-algorismia/CMakeLists.txt">

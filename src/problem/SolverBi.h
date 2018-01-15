@@ -4,6 +4,7 @@
 
 
 #include <queue>
+#include <stack>
 #include "../classes/Network.h"
 #include "../classes/Flight.h"
 
@@ -12,20 +13,27 @@ class Solver {
     private:
         Network network;
         std::vector<Flight> flights;
-        std::queue< queue<int> > result;
+        std::queue< std::stack<int> > result;
         std::map< pair<int,int>, int > connectedBy;
 
         int nPilots;
 
         void generateNetwork(int version);
+
         void generateEdgesV1(int n, int size);
         void generateEdgesV2(int n, int size);
+
+        void generateResult1();
+        void generateResult2();
+
         bool canConnect(int i, int j);
         int foundConnection(int i, int nFlights);
         void printResult();
-        void generateResult1();
-        void generateResult2();
+
+
         int getOptim();
+
+        vector<int> hasMoreThanOneEdge();
 
 
     public:
@@ -36,7 +44,7 @@ class Solver {
         int getNPilots();
 
 
-    vector<int> hasMoreThanOneEdge();
+
 };
 
 

@@ -2,7 +2,8 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
-#include "Solver.h"
+#include <stack>
+#include "SolverBi.h"
 #include "../algorithm/EKAlgoritm.h"
 
 
@@ -137,112 +138,43 @@ void Solver::generateResult1() {
     int n = this->flights.size();
     vector<int> parent(n,-1);
 
+    for(int i = n+1; i <= 2*n+1; ++i) {
+        int j = 1;
+        bool trobat = false;
+        while(j <=n and !trobat) {
+            int x = i-n;
+            if(network.getFlowValue(j,i) == 1) {
+                trobat = true;
 
-
-    /*
-     *
-     *
-
-
-    int n = this->network.getNodes();
-    int pos = 0;
-
-    int nFlights = this->flights.size();
-    vector<int> connections(nFlights+1,-1);
-
-    for(int i = 1; i <= nFlights; ++i)
-        connections[i] = foundConnection(i,nFlights);
-
-
-    vector<bool> used(n,false);
-    for(int i = 1; i <= nFlights; ++i) {
-
-        if(!used[i] and connections[i] != -1) {
-            queue<int> travel;
-            travel.push(i);
-
-            used[i] = true;
-            int aux = connections[i];
-            if(aux != 1) {
-                while (aux != -1) {
-                    travel.push(aux);
-                    used[aux] = true;
-                    aux = connections[aux];
-                }
+                parent[x] = j;
             }
-            result.push(travel);
+            ++j;
         }
-        ++pos;
+    }
+
+
+    //Mirarmos lo que no tienen flow desde source
+    for(int i = 1; i <= n; ++i) {
+
+        if(network.getFlowValue(0,i)==0){
+
+            stack<int> S;
+            S.push(i);
+
+            int aux = parent[i];
+            while( aux != -1) {
+
+                S.push(aux);
+                aux = parent[aux];
+            }
+            result.push(S);
+        }
+
     }
     this->nPilots = result.size();
-
-
-    // Ir nodo a nodo y ver quien esta conectado con quien e ir haciendo cadenas
-
-     */
 }
 
 void Solver::generateResult2() {
-
-    int n = this->network.getNodes();
-    int pos = 0;
-
-    int nFlights = this->flights.size();
-
-    vector<vector<int> > connections(nFlights+1,vector<int>(1,-1));
-
-
-    for(int i = 1; i <= nFlights; ++i) {
-
-        int x = foundConnection(i,nFlights);
-        vector<int> intersection = network.adjIntersection(i,x,nFlights);
-        if(intersection.empty()) connections[i][0] = x;
-        else {
-            int aux = intersection[0];
-            connections[i][0] = aux;
-            connections[i].push_back(x);
-        }
-
-
-    }
-
-
-
-    vector<bool> used(n,false);
-    queue<int> travel;
-    for(int i = 1; i <= nFlights; ++i) {
-
-        if(!used[i]) {
-            travel = queue<int>();
-            travel.push(i);
-
-            int aux;
-            if (connections[i].size() == 1) aux = connections[i][0];
-            else {
-                int x = connections[i][0];
-                travel.push(x);
-                aux = connections[i][1];
-            }
-            if(aux != 1) {
-                int aux2 = aux;
-                while (aux2 != -1) {
-                    travel.push(aux2);
-                    used[aux2] = true;
-
-                    aux = aux2;
-                    if (connections[aux].size() == 1) {
-                        aux2 = connections[aux][0];
-                    }
-                    else {
-                        travel.push(connections[aux][0]);
-                        aux2 = connections[aux][1];
-                    }
-                }
-            }
-            result.push(travel);
-        }
-        ++pos;
-    }
 }
 
 
@@ -250,7 +182,6 @@ void Solver::generateResult2() {
 
 
 bool Solver::canConnect(int i, int j) {
-
 
     bool samePlace = (flights[i].getDestination() == flights[j].getOrigin());
     bool goodTime = (flights[i].getHF() + 15 <= flights[j].getHI());
@@ -263,23 +194,21 @@ int Solver::foundConnection(int i, int nFlights) {
 
     int j = 1;
     while(j <= nFlights) {
-
         if(network.getFlowValue(i,j+nFlights)==1)
             return j;
         ++j;
     }
-
     return -1;
 }
 
 int Solver::getOptim() {
 
     int i = 0;
-    queue< queue<int> > Q = this->result;
+    queue< stack<int> > Q = this->result;
 
 
     while(!Q.empty()) {
-        queue<int> aux = Q.front();
+        stack<int> aux = Q.front();
         Q.pop();
         while(!aux.empty()) {
             aux.pop();
@@ -293,6 +222,8 @@ int Solver::getNPilots() {
     return this->nPilots;
 }
 
+//OUTPUT -------------------------------------------------
+
 void Solver::printResult() {
 
     // RESULTS FILE ---------------------------------------
@@ -301,14 +232,17 @@ void Solver::printResult() {
     res.open ("results.txt", fstream::in | fstream::out | fstream::app);
     res << this->nPilots << endl;
 
+
     while (!result.empty()){
-        queue<int> list = result.front();
+        stack<int> list = result.front();
+
         result.pop();
 
         while(!list.empty()){
 
-            res << list.front() << " ";
+            res << list.top() << " ";
             list.pop();
+
         }
         res << endl;
     }

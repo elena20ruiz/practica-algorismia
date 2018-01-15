@@ -1,8 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include "problem/Solver.h"
-#include <string.h>
+#include "problem/SolverBi.h"
 #include <ctime>
 
 void readFile(string root, int version, string id);
@@ -61,7 +60,6 @@ int main() {
 */
 
 }
-
 
 void readFile(string root, int version, string id_exp) {
 

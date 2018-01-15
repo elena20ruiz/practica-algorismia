@@ -606,32 +606,59 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/practica.dir/build.make CMakeFiles/practica.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
-src/problem/Solver.o: src/problem/Solver.cpp.o
+src/problem/SolverBi.o: src/problem/SolverBi.cpp.o
 
-.PHONY : src/problem/Solver.o
+.PHONY : src/problem/SolverBi.o
 
 # target to build an object file
-src/problem/Solver.cpp.o:
-	$(MAKE) -f CMakeFiles/practica.dir/build.make CMakeFiles/practica.dir/src/problem/Solver.cpp.o
-.PHONY : src/problem/Solver.cpp.o
+src/problem/SolverBi.cpp.o:
+	$(MAKE) -f CMakeFiles/practica.dir/build.make CMakeFiles/practica.dir/src/problem/SolverBi.cpp.o
+.PHONY : src/problem/SolverBi.cpp.o
 
-src/problem/Solver.i: src/problem/Solver.cpp.i
+src/problem/SolverBi.i: src/problem/SolverBi.cpp.i
 
-.PHONY : src/problem/Solver.i
+.PHONY : src/problem/SolverBi.i
 
 # target to preprocess a source file
-src/problem/Solver.cpp.i:
-	$(MAKE) -f CMakeFiles/practica.dir/build.make CMakeFiles/practica.dir/src/problem/Solver.cpp.i
-.PHONY : src/problem/Solver.cpp.i
+src/problem/SolverBi.cpp.i:
+	$(MAKE) -f CMakeFiles/practica.dir/build.make CMakeFiles/practica.dir/src/problem/SolverBi.cpp.i
+.PHONY : src/problem/SolverBi.cpp.i
 
-src/problem/Solver.s: src/problem/Solver.cpp.s
+src/problem/SolverBi.s: src/problem/SolverBi.cpp.s
 
-.PHONY : src/problem/Solver.s
+.PHONY : src/problem/SolverBi.s
 
 # target to generate assembly for a file
-src/problem/Solver.cpp.s:
-	$(MAKE) -f CMakeFiles/practica.dir/build.make CMakeFiles/practica.dir/src/problem/Solver.cpp.s
-.PHONY : src/problem/Solver.cpp.s
+src/problem/SolverBi.cpp.s:
+	$(MAKE) -f CMakeFiles/practica.dir/build.make CMakeFiles/practica.dir/src/problem/SolverBi.cpp.s
+.PHONY : src/problem/SolverBi.cpp.s
+
+src/problem/SolverCir.o: src/problem/SolverCir.cpp.o
+
+.PHONY : src/problem/SolverCir.o
+
+# target to build an object file
+src/problem/SolverCir.cpp.o:
+	$(MAKE) -f CMakeFiles/practica.dir/build.make CMakeFiles/practica.dir/src/problem/SolverCir.cpp.o
+.PHONY : src/problem/SolverCir.cpp.o
+
+src/problem/SolverCir.i: src/problem/SolverCir.cpp.i
+
+.PHONY : src/problem/SolverCir.i
+
+# target to preprocess a source file
+src/problem/SolverCir.cpp.i:
+	$(MAKE) -f CMakeFiles/practica.dir/build.make CMakeFiles/practica.dir/src/problem/SolverCir.cpp.i
+.PHONY : src/problem/SolverCir.cpp.i
+
+src/problem/SolverCir.s: src/problem/SolverCir.cpp.s
+
+.PHONY : src/problem/SolverCir.s
+
+# target to generate assembly for a file
+src/problem/SolverCir.cpp.s:
+	$(MAKE) -f CMakeFiles/practica.dir/build.make CMakeFiles/practica.dir/src/problem/SolverCir.cpp.s
+.PHONY : src/problem/SolverCir.cpp.s
 
 # Help Target
 help:
@@ -683,9 +710,12 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/problem/Solver.o"
-	@echo "... src/problem/Solver.i"
-	@echo "... src/problem/Solver.s"
+	@echo "... src/problem/SolverBi.o"
+	@echo "... src/problem/SolverBi.i"
+	@echo "... src/problem/SolverBi.s"
+	@echo "... src/problem/SolverCir.o"
+	@echo "... src/problem/SolverCir.i"
+	@echo "... src/problem/SolverCir.s"
 .PHONY : help
 
 
